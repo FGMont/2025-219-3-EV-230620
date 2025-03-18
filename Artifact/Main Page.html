@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>Steam Game Explorer Archive</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        div {
+            width: 1000px;
+        }
+
+        .topmen {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topmen a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topmen a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topmen a.active {
+            background-color: royalblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=topmen>
+        <a class='active' href="./Main Page.html">Main Page</a>
+        <a href="./form.html">User Survey</a>
+    </div>
+    <div>
+        <h1>Steam Game Archive</h1>
+        <P>Welcome to the Steam Game Archive where we examine all steam games from the 1997 to 2025!</P><br>
+        <p>This website is for Game lovers, wether hobbyists, competitive or casual gamers with an interest in finding
+            out more about the games Steam has to offer as of 2025.
+        </p>
+
+
+
+        <h3>Charted Data</h3>
+
+        <!--Work for timeline graph-->
+        <p>Below is a Timeline of the frequency of Games published through the years. This chart presents the count of every steam game 
+            published per year starting with 1997. It's a line graph displaying game publishing frequency. To shorten or lengthen the graph, 
+            please interact with the selection of years below and click submit.  
+
+        </p>
+        <canvas id="TimelineCanvas"></canvas>
+
+
+        <!--This option should shrink or expand the line plot acoordingly.-->
+        <form id='Year_Select'>
+            <label for="Year">How far into the timeline do you want to see?</label><br>
+            <select name="Year" id='Year'>
+                <option>2000</option>
+                <option>2005</option>
+                <option>2010</option>
+                <option>2015</option>
+                <option>2020</option>
+                <option>2025</option>
+
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div>
+        <p>Below is a Doughnut Chart displaying all game tags that Steam has to offer and their popularity in games.
+            To trim or expand the amount of tags displayed, please interact with the selection of years below and click submit.
+
+        </p>
+        <canvas id="GenreDoughnutCanvas"></canvas>
+
+        <form id='Tag_Select'>
+            <label for="Tag">How many genres do you wish to view?</label><br>
+            <select name="Tag" id='Tag'>
+                <option>Show 5</option>
+                <option>Show 10</option>
+                <option>Show 15</option>
+                <option>Show 20</option>
+                <option>Show 25</option>
+                <option>Show 30</option>
+                <option>Show All</option>
+
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <h1>Game Recommendation</h1>
+        <p>Finding the game for you can be difficult at best and tedius at most. Thankfully, due to the use og game tags, we can filter
+            games easily by subject matter, interactability and genre. Below is a checklist of all 34 tags that appear in Steam games.
+            To be presented with game reccomendations tailored to your taste, select the genres that appeal to you and click submit.
+        </p>
+        <form id='Reccomendation_Input'>
+            <!-- Preference list -->
+
+            <fieldset>
+                <p>Which of the genres below do you want to include in your search?</p><br>
+
+                <legend>Select Genres:</legend>
+                <input type="checkbox" id="tag1" name="genre" value="Casual">
+                <label for="tag1">Casual</label><br>
+
+                <input type="checkbox" id="tag2" name="genre" value="Indie">
+                <label for="tag2">Indie</label><br>
+
+                <input type="checkbox" id="tag3" name="genre" value="Sports">
+                <label for="tag3">Sports</label><br>
+
+                <input type="checkbox" id="tag4" name="genre" value="Action">
+                <label for="tag4">Action</label><br>
+
+                <input type="checkbox" id="tag5" name="genre" value="Adventure">
+                <label for="tag5">Adventure</label><br>
+
+                <input type="checkbox" id="tag6" name="genre" value="Strategy">
+                <label for="tag6">Strategy</label><br>
+
+                <input type="checkbox" id="tag7" name="genre" value="Free to Play">
+                <label for="tag7">Free to Play</label><br>
+
+                <input type="checkbox" id="tag8" name="genre" value="Massively Multiplayer">
+                <label for="tag8">Massively Multiplayer</label><br>
+
+                <input type="checkbox" id="tag9" name="genre" value="RPG">
+                <label for="tag9">RPG</label><br>
+
+                <input type="checkbox" id="tag10" name="tag10" value="Simulation">
+                <label for="tag10">Simulation</label><br>
+
+                <input type="checkbox" id="tag11" name="tag11" value="Racing">
+                <label for="tag11">Racing</label><br>
+
+                <input type="checkbox" id="tag12" name="tag12" value="Utilities">
+                <label for="tag12">Utilities</label><br>
+
+                <input type="checkbox" id="tag13" name="tag13" value="Education">
+                <label for="tag13">Education</label><br>
+
+                <input type="checkbox" id="tag14" name="tag14" value="Sexual Content">
+                <label for="tag14">Sexual Content</label><br>
+
+                <input type="checkbox" id="tag15" name="tag15" value="Nudity">
+                <label for="tag15">Nudity</label><br>
+
+                <input type="checkbox" id="tag16" name="tag16" value="Violent">
+                <label for="tag16">Violent</label><br>
+
+                <input type="checkbox" id="tag17" name="tag17" value="Gore">
+                <label for="tag17">Gore</label><br>
+
+                <input type="checkbox" id="tag18" name="tag18" value="Design & Illustration">
+                <label for="tag18">Design & Illustration</label><br>
+
+                <input type="checkbox" id="tag19" name="tag19" value="Animation & Modeling">
+                <label for="tag19">Animation & Modeling</label><br>
+
+                <input type="checkbox" id="tag20" name="tag20" value="Game Development">
+                <label for="tag20">Game Development</label><br>
+
+                <input type="checkbox" id="tag21" name="tag21" value="Web Publishing">
+                <label for="tag21">Web Publishing</label><br>
+
+                <input type="checkbox" id="tag21" name="tag21" value="Software Training">
+                <label for="tag21">Software Training</label><br>
+
+                <input type="checkbox" id="tag22" name="tag22" value="Photo Editing">
+                <label for="tag22">Photo Editing</label><br>
+
+                <input type="checkbox" id="tag23" name="tag23" value="Audio Production">
+                <label for="tag23">Audio Production</label><br>
+
+                <input type="checkbox" id="tag24" name="tag24" value="Video Production">
+                <label for="tag24">Video Production</label><br>
+
+                <input type="checkbox" id="tag25" name="tag25" value="Accounting">
+                <label for="tag25">Accounting</label><br>
+
+                <input type="checkbox" id="tag26" name="tag26" value="Movie">
+                <label for="tag26">Movie</label><br>
+
+                <input type="checkbox" id="tag27" name="tag27" value="Documentary">
+                <label for="tag27">Documentary</label><br>
+
+                <input type="checkbox" id="tag28" name="tag28" value="Episodic">
+                <label for="tag28">Episodic</label><br>
+
+                <input type="checkbox" id="tag29" name="tag29" value="Short">
+                <label for="tag29">Short</label><br>
+
+                <input type="checkbox" id="tag30" name="tag30" value="Tutorial">
+                <label for="tag30">Tutorial</label><br>
+
+                <input type="checkbox" id="tag31" name="tag31" value="360 Video">
+                <label for="tag31">360 Video</label><br>
+
+                <input type="submit" value="Submit">
+            </fieldset>
+            <br>
+            <div>
+                <fieldset>
+                    <P>We have found some games that fit your search!
+
+                        Here are the top reccomendations:
+                    </P>
+                    <ul id="name"></ul>
+                </fieldset>
+            </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC68thSN-iJZv_MTOniCj4Elp1eInDLIoE",
+            authDomain: "lc-project-36865.firebaseapp.com",
+            databaseURL: "https://lc-project-36865-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "lc-project-36865",
+            storageBucket: "lc-project-36865.firebasestorage.app",
+            messagingSenderId: "539828843119",
+            appId: "1:539828843119:web:135507203d7acccb73d39a",
+            measurementId: "G-WKQX4DZ6JJ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, ref, set, get, update, child, push } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+        const database = getDatabase();
+
+        const firebaseRef = ref(database);
+
+        let resp = document.getElementById('Year_Select')
+        resp.addEventListener('submit', Form_Sub_Timeline)
+
+        function Form_Sub_Timeline(event) {
+            event.preventDefault()
+            let Year_ = document.getElementById('Year')
+
+
+            let starting_xValues_canvas = structuredClone(xValues_canvas_1);
+            let starting_yValues_canvas = structuredClone(yValues_canvas_1);
+            let pivot = starting_xValues_canvas.indexOf(Year_.value)
+
+            let newxValues = starting_xValues_canvas.splice(0, pivot + 1)
+
+            let newyValues = starting_yValues_canvas.splice(0, pivot + 1)
+
+            Game_Timeline_Chart.data.labels = newxValues
+            Game_Timeline_Chart.data.datasets[0].data = newyValues
+
+            Game_Timeline_Chart.update()
+
+        }
+
+        let tagresp = document.getElementById('Tag_Select')
+        tagresp.addEventListener('submit', Form_Sub_Tags)
+
+        let choice_list = ['Show 5', 'Show 10', 'Show 15', 'Show 20', 'Show 25', 'Show 30', 'Show All']
+        function Form_Sub_Tags(event) {
+            event.preventDefault()
+            let Tag_ = document.getElementById('Tag')
+
+            let starting_xValues_can = structuredClone(xValues_canvas_2);
+            let starting_yValues_can = structuredClone(yValues_canvas_2);
+
+            let tag_pivot = choice_list.indexOf(Tag_.value)
+
+            tag_pivot = tag_pivot + 1
+
+            let newxValue = starting_xValues_can.splice(0, tag_pivot * 5)
+
+            let newyValue = starting_yValues_can.splice(0, tag_pivot * 5)
+
+            Game_Genres_Chart.data.labels = newxValue
+            Game_Genres_Chart.data.datasets[0].data = newyValue
+
+            Game_Genres_Chart.update()
+
+        }
+
+
+        //Timeline Graph information
+
+
+        const barColors = [
+            "rgba(253, 184, 146, 0.3)",
+            "rgba(204, 168, 240, 0.9)",
+            "rgba(110, 76, 91, 0.2)",
+            "rgba(10, 123, 121, 0.9)",
+            "rgba(166, 39, 26, 0.2)",
+
+            "rgba(73, 204, 17, 0.5)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(12, 143, 239, 0.9)",
+            "rgba(12, 143, 239, 0.9)",
+
+            "rgba(73, 204, 17, 0.5)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(12, 143, 239, 0.9)",
+            "rgba(12, 143, 239, 0.9)",
+
+            "rgba(73, 204, 17, 0.5)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(12, 143, 239, 0.9)",
+            "rgba(12, 143, 239, 0.9)",
+
+            "rgba(73, 204, 17, 0.5)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(12, 143, 239, 0.9)",
+            "rgba(12, 143, 239, 0.9)",
+
+            "rgba(73, 204, 17, 0.5)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(12, 143, 239, 0.9)",
+            "rgba(12, 143, 239, 0.9)",
+
+            "rgba(73, 204, 17, 0.5)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(55, 237, 238, 0.4)",
+            "rgba(12, 143, 239, 0.9)",
+            "rgba(55, 237, 238, 0.4)",
+
+        ]
+
+
+        function processing(snapshot) {
+            console.log('Processing function')
+            console.log(snapshot.size)
+            snapshot.forEach(function () { console.log('Key =>', snapshot.key); console.log('Value =>', snapshot.val()); })
+
+
+        }
+
+
+        let Game_Timeline_Chart = null
+
+
+        function draw_line_chart(w, x, y) {
+
+
+            Game_Timeline_Chart = new Chart(w, {
+                type: "line",
+
+                data: {
+                    labels: x,
+                    datasets: [{
+
+
+                        data: y,
+                        backgroundColor: 'rgba(109,217,86,0.41)',
+                        borderColor: 'rgba(74,160,54,0.41)',
+                    }]
+                },
+                options: {
+                    
+                    legend: {
+                        display: false
+                    },
+
+                    title: {
+                        display: true,
+                        text: 'Game Timeline Chart'
+                    },
+                    scales: {
+                    yAxes: [{
+                        ticks: { beginAtZero: true }, scaleLabel: {
+                            display: true,
+                            labelString: 'Games published'
+                        }
+                    }], xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Years'
+                        }
+                    }],
+                }
+
+                }
+
+
+            })
+        }
+
+        let Game_Genres_Chart = null
+
+        function draw_doughnut_chart(w, x, y) {
+
+
+            Game_Genres_Chart = new Chart(w, {
+                type: "doughnut",
+                data: {
+                    labels: x,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: y
+                    }]
+
+                },
+                options: {
+                    legend: {
+                        display: false
+                    },
+
+                    title: {
+                        display: true,
+                        text: 'Genre Popularity Chart'
+                    }
+
+                }
+
+
+            })
+        }
+
+        let xValues_canvas_1 = []
+        let yValues_canvas_1 = []
+
+        let xValues_canvas_2 = []
+        let yValues_canvas_2 = []
+
+        get(child(firebaseRef, '/Counts_per_year')).then((snapshot) => {
+            if (snapshot.exists()) {
+
+                let game_count = snapshot.val()
+                xValues_canvas_1 = Object.keys(snapshot.val())
+                console.log(game_count)
+                yValues_canvas_1 = Object.values(snapshot.val())
+                draw_line_chart("TimelineCanvas", xValues_canvas_1, yValues_canvas_1)
+            }
+        })
+
+
+        get(child(firebaseRef, '/Games_per_Tags')).then((snapshot) => {
+            if (snapshot.exists()) {
+
+                let game_genre = snapshot.val()
+                xValues_canvas_2 = Object.keys(snapshot.val())
+                console.log(game_genre)
+                yValues_canvas_2 = Object.values(snapshot.val())
+                draw_doughnut_chart("GenreDoughnutCanvas", xValues_canvas_2, yValues_canvas_2)
+
+
+            }
+        })
+
+        let response = document.getElementById('Reccomendation_Input')
+        response.addEventListener('submit', Reccomendation_Sub)
+
+        let recc_list = null
+        function Reccomendation_Sub(event) {
+            event.preventDefault()
+            let select = false
+
+            recc_list = []
+            let counter = 1
+            //let response_list = []
+            for (let i = 0; i < 31; i++) {
+
+                let check = document.getElementById(String('tag' + counter))
+
+                if (check.checked) {
+                    recc_list.push(check.value)
+                    select = true
+                }
+
+                // else{
+
+                //     alert('Please select a genre.')
+                // }
+
+
+                counter = counter + 1
+
+
+            }
+
+            if(select == false){
+                alert('Please select a genre.')
+            }
+            
+            get(child(firebaseRef, '/Top_Games_per_Tags')).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(recc_list)
+                    for (let each of recc_list) {
+                        console.log(each)
+                        let top_tags = snapshot.val()[each]
+                        console.log(top_tags)
+                        for (var I = 0; I < top_tags.length; I++) {
+                            let nameList = "<li>" + top_tags[I] + "</li>";
+                            document.getElementById("name").innerHTML += nameList;
+                        }
+                       
+                    }
+
+                }
+
+            })
+        }
+    </script>
+</body>
+
+</html>
+
+<!--TO DO:
+
+    -FINISHED!!!
+
+-->
