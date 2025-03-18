@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-cred = credentials.Certificate("C:\\Users\\19FMonteiro.ACC\\OneDrive - Longford and Westmeath Education and Training Board\\2025 Computer Science Python projects\\Computer Science JS Project\\lc-project-36865-firebase-adminsdk-fbsvc-6e6fe089a1.json")
+cred = credentials.Certificate("lc-project-36865-firebase-adminsdk-fbsvc-6e6fe089a1.json")
 import numpy as np
 
 firebase_admin.initialize_app(cred, {'databaseURL': 'https://lc-project-36865-default-rtdb.europe-west1.firebasedatabase.app/'})
